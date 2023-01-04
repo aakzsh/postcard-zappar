@@ -102,6 +102,14 @@
                 });
             },
         });
+
+        //Show/hide our content when our image is visible/not-visible
+        AFRAME.registerComponent("visibility-changer", {
+            init: function () {
+                this.el.sceneEl.addEventListener('zappar-visible', () => this.el.setAttribute("visible", true));
+                this.el.sceneEl.addEventListener('zappar-notvisible', () => this.el.setAttribute("visible", false));
+            }
+        });
     </script>
 </head>
 
@@ -125,30 +133,32 @@
 
         <!-- Setup our instant tracker and start it in placement mode so the user can -->
         <!-- choose a location for the object -->
-        <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+        <a-entity zappar-image="target: assets/example-tracking-image.zpt">
 
-            <!-- Include a videoGroup inside our instant tracker -->
-            <a-entity id="videoGroup" position="0 0.5 0">
-                <!-- Add our video -->
-                <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video>
-                
-                <!-- Play and Pause Buttons -->
-                <a-entity id="buttons" position="0 -1 0">
-                    <a-plane id="play" class="interactive" play src="#play-circle" position="-0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"> </a-plane>
-                    <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane>
+            <!-- This group will be set visible when the image is in view -->
+            <a-entity visibility-changer visible="false">
+                <a-entity id="videoGroup" position="0 0.5 0">
+                    <!-- Add our video -->
+                    <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video>
+                    
+                    <!-- Play and Pause Buttons -->
+                    <a-entity id="buttons" position="0 -1 0">
+                        <a-plane id="play" class="interactive" play src="#play-circle" position="-0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"> </a-plane>
+                        <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane>
+                    </a-entity>
                 </a-entity>
+               
             </a-entity>
-
         </a-entity>
     </a-scene>
 
     <!-- Some UI for the user to tap to indicate they're happy with the placement -->
-    <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div>
+    <!-- <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div> -->
 
      <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
-    <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>
+    <!-- <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>W -->
 
-    <script>
+    <!-- <script>
         // Assign a variable to the video
         const bigBuckBunnyVideo = document.getElementById('bigBuckBunnyVideo');
 
@@ -192,7 +202,7 @@
 
         // Update our feather icons
         feather.replace();
-    </script>
+    </script> -->
 </body>
 
 </html>
