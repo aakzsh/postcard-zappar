@@ -126,23 +126,56 @@
     }
   `,
       });
-
+var step=0;
       AFRAME.registerComponent("visibility-changer", {
         init: function () {
+
+
+            
           document
             .getElementById("zappar-placement-ui")
             .addEventListener("click", () => {
-              document.getElementById("texture").setAttribute("visible", true);
 
-              document
-                .getElementById("buttons")
-                .setAttribute("position", "-100 -100 -100");
-              document
+                if(step==4){
+    window.location.href='create.html';
+}
+
+if(step==2){
+    document
                 .getElementById("showtext")
-                .setAttribute("value", "add texture");
-              document
-                .getElementById("showtext")
-                .setAttribute("position", "-0.4 -1 0");
+                .setAttribute("value", "change text color");
+                document
+  .getElementById("showtext")
+  .setAttribute("position", "-0.6 -1 0");
+  document
+  .getElementById("texture")
+  .setAttribute("position", "-100 -100 -100");
+  document
+  .getElementById("txtclr")
+  .setAttribute("position","0 -1 0");
+  document
+  .getElementById("posttext")
+  .setAttribute("position","-0.7 0 0");
+//   position=
+
+}
+
+
+if(step!=2 && step!=3 ){
+    document.getElementById("texture").setAttribute("visible", true);
+
+document
+  .getElementById("buttons")
+  .setAttribute("position", "-100 -100 -100");
+document
+  .getElementById("showtext")
+  .setAttribute("value", "add texture");
+document
+  .getElementById("showtext")
+  .setAttribute("position", "-0.4 -1 0");
+
+}
+step++;
 
               // position="-0.9 -1 0"
             });
@@ -186,8 +219,16 @@
         <!-- Include a videoGroup inside our instant tracker -->
         <a-entity id="videoGroup" position="0 0.5 0">
           <!-- Add our video -->
-          <a-plane color="#D7CEBC" id="postcard-plane" height="1" width="1.5">
+          <a-plane color="#D7CEBC" id="postcard-plane" height="1" width="1.5" >
             <!-- material="shader: texture-shader; uMap: #boxTexture; transparent: true" -->
+            <a-text
+            value="AR Postcard,\npowered by ZapWorks"
+            id="posttext"
+            position="-100 0 0"
+color="black"
+            height="2"
+            width="3"
+          ></a-text>
           </a-plane>
           <a-text
             value="change background color"
@@ -308,6 +349,37 @@
 
             <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
           </a-entity>
+
+          <a-entity
+          id="txtclr"
+          position="100 -1 0"
+          
+          visible="true"
+        >
+          <a-circle
+            radius="0.5"
+            color="black"
+            class="interactive"
+            position="-0.2 0.3 0"
+            scale="0.3 0.3 0.3"
+            material="alpha-test:0.5"
+            onclick="changeTextclr('black')"
+          >
+          </a-circle>
+          <a-circle
+            radius="0.5"
+            color="white"
+
+            class="interactive"
+            position="0.2 0.3 0"
+            scale="0.3 0.3 0.3"
+            material="alpha-test:0.5"
+            onclick="changeTextclr('white')"
+          >
+          </a-circle>
+
+          <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
+        </a-entity>
         </a-entity>
       </a-entity>
     </a-scene>
@@ -321,6 +393,12 @@
     </div>
 
     <script>
+
+        function changeTextclr(clr){
+            console.log(clr)
+            document.getElementById("posttext").setAttribute("color",clr)
+            localStorage.setItem("textclr", clr)
+        }
       function changeClr(clr) {
         document.getElementById("postcard-plane").setAttribute("color", clr);
         const colors = {
@@ -332,6 +410,7 @@
           "#0E2234": "grey",
         };
         localStorage.setItem("clr", colors[clr]);
+        localStorage.setItem("hex", clr);
       }
 
       function addTexture() {
@@ -340,10 +419,13 @@
         console.log(x);
         const src = "src: #" + x;
         document.getElementById("postcard-plane").setAttribute("material", src);
+        localStorage.setItem("isTexture", true);
+
       }
 
       function removeTexture() {
         document.getElementById("postcard-plane").setAttribute("material", "color : #ffffff");
+        localStorage.setItem("isTexture", false);
       }
 
       document.getElementById("pause").addEventListener("click", () => {
