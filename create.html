@@ -1,156 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create | Postcard Zappar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+      integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="styles/create.css" />
+  </head>
 
-<head>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
-     <!-- Feather - Open source icons: https://feathericons.com -->
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Custom components -->
-    <script src="components.js"></script>
+  <body>
+    
 
-    <meta charset="utf-8" />
-    <title>Zappar for A-Frame: Instant Tracked Video Example</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+    <div class="content" style="display: block;">
+      <h1>CREATE AN AR POSTCARD</h1>
+      <P class="subtitle">fill out the following details and then design your customized postcard in the next step</P>
+      <br><br>
+      <div class="inside">
+        <P>Add personal note</P>
+      <input type="text" class="note" name="note" id="note" placeholder="put your note here" maxlength="50">
+      <br>
+      <P>Add four images (use 1:1 ratio for best view)</P>
+      <div class="images-upload">
+        <input type="file" name="img1" id="img1" accept="image/*">
+      <input type="file" name="img2" id="img2" accept="image/*">
+      <input type="file" name="img3" id="img3" accept="image/*">
+      <input type="file" name="img4" id="img4" accept="image/*">
+      </div>
 
-            text-rendering: optimizelegibility;
-            font-family: "Lato",sans-serif;
-            text-align: center;
-            font-weight: 400;
+      <br>
+      <P>Add a video</P>
+      <input type="file" name="vid" id="vid" accept="video/*">
+      <br><br>
+      <button class="next" onclick="uploadFiles(document.getElementById('img1').files[0])">next</button>
+      
+      </div>
+    </div>
 
-            background: #f3f8fd;
-            background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
+<div class="design" style="display: block;">
+  <h1>YOUR DESIGNED AR POSTCARD</h1>
+<P class="subtitle">to send to your loved ones</P>
 
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
+<div class="post-par"><div id="posty" class="postcard">
+  <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO"  class="postcard-qr"  /> -->
+  <canvas id="qr-code"></canvas>  <!-- <img src="https://media.discordapp.net/attachments/873911460055642152/1060903835121483817/EAAAAASUVORK5CYII.png" class="postcard-qr" alt=""> -->
+  <p class="postcard-title">AR Postcard</p>
+  <p class="postcard-subtitle">made especially for you</p>
+  <p style="margin-top: -1rem; font-size: 1rem;">powered by ZapWorks</p>
+  <div class="mascot1"></div>
+  <div class="mascot2"></div>
+  <!-- <img src="https://i.pinimg.com/originals/ae/bf/f8/aebff820fd4da79db61299c3ac69bd9a.png" class="mascot1" alt=""> -->
+  <!-- <img src="https://www.freepnglogos.com/uploads/mascot-logo-png/bear-head-mascot-red-bear-mascot-angry-15.png" class="mascot2" alt=""> -->
+</div></div>
 
-            cursor: default;
+<center><button class="next" onclick="save()">download</button></center>
+</div>
 
-            overflow: hidden;
-        }
-        .btn, .btn:visited {
-            position: absolute;
+    <!-- <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">
+      db check
+    </h2>
 
-            width: 200px;
+    <div id="capture" style="padding: 10px; background: #f5da55">
+      <h4 style="color: #000">Hello world!</h4>
+    </div>
 
-            padding: 10px;
+    <form class="container" id="contactForm">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"> Enter Your Name </label>
 
-            color: #fff;
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Enter your name"
+            />
+          </div>
 
-            border: solid 1px #CE3923;
-            background-color: #CE3923;
+          <div class="form-group">
+            <label for="exampleFormControlInput1"> Email address </label>
 
-            border-radius: 10px;
-        }
-        .btn:hover {
-            border: solid 1px #EC472F;
-            background-color: #EC472F;
-        }
-        #zappar-placement-ui {
-            left: calc(50% - 100px);
-            bottom: 30px;
-        }
-        #zappar-replacement-ui {
-            width: 50px;
-            right: 10px;
-            bottom: 10px;
-        }
-        #zappar-replacement-ui svg {
-            margin-top: 3px;
-        }
-        .visible {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity .2s linear;
-        }
-        .hidden {
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s 2s, opacity .2s linear;
-        }
-    </style>
-     <!-- Add our components before the scene so they can initialise in time -->
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="name@example.com"
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="margin-left: 15px; margin-top: 10px"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+    <a id="link"></a>
+
+    <button onclick="save()">as image</button> -->
+    <a id="link"></a>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
     <script>
-        // Register our play component
-        // This component will play the video when an entity holding it is clicked
-        AFRAME.registerComponent('play', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.muted = false;
-                    bigBuckBunnyVideo.play();
-                });
-            },
-        });
 
-        // Register our pause component
-        // This component will pause the video when an entity holding it is clicked
-        AFRAME.registerComponent('pause', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.pause();
-                });
-            },
-        });
 
-        //Show/hide our content when our image is visible/not-visible
-        AFRAME.registerComponent("visibility-changer", {
-            init: function () {
-                this.el.sceneEl.addEventListener('zappar-visible', () => this.el.setAttribute("visible", true));
-                this.el.sceneEl.addEventListener('zappar-notvisible', () => this.el.setAttribute("visible", false));
-            }
+var x = localStorage.getItem("hex");
+var y = localStorage.getItem("textclr");
+document.getElementById("posty").style.color = y;
+
+var clr = localStorage.getItem("clr");
+document.getElementById("posty").style.backgroundColor = x;
+var isTexture = localStorage.getItem("isTexture");
+
+if(isTexture){
+  console.log("hemlo")
+  document.getElementById("posty").style.backgroundImage = 'url("./assets/'+clr+'.png")'
+}
+
+// document.getElementById
+
+
+// ("mascotchild").style.backgroundColor = x
+var qrtext = "hehehheheh";
+                // document.getElementById("qr-result").innerHTML = "QR code for " + qrtext +":";
+                // alert(qrtext);
+                var qr;
+			(function() {
+                    qr = new QRious({
+                    element: document.getElementById('qr-code'),
+                    size: 150,
+                    value: 'xyz'
+                });
+            })();
+            
+
+      function save() {
+
+        // html2canvas(document.querySelector("#posty"), {  allowTaint: true, onrendered     : function (canvas) {      
+        //   var link = document.getElementById("link");
+        //   link.setAttribute("download", "postcard.png");
+        //   link.setAttribute(
+        //     "href",
+        //     canvas
+        //       .toDataURL("image/png")
+        //       .replace("image/png", "image/octet-stream")
+        //   );
+        //   link.click();
+        //            } });
+
+        html2canvas(
+          document.querySelector("#posty")).then((canvas) => {
+            // allowTaint: true
+          
+          // document.body.appendChild(canvas)
+          var link = document.getElementById("link");
+          link.setAttribute("download", "postcard.png");
+          link.setAttribute(
+            "href",
+            canvas
+              .toDataURL("image/png")
+              .replace("image/png", "image/octet-stream")
+          );
+          link.click();
         });
+      }
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", submitForm);
+
+      function submitForm(e) {
+        e.preventDefault();
+
+        // Get values
+        var name = getInputVal("name");
+        var email = getInputVal("email");
+
+        saveMessage(name, email);
+        document.getElementById("contactForm").reset();
+      }
     </script>
-</head>
-
-<body>
-    <a-scene>
-        <!-- Ask user for camera permissions, display some text if permission is denied -->
-        <a-entity zappar-permissions-ui id="permissions"></a-entity>
-        <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
-        <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
-
-        <!-- Get our assets-->
-        <a-assets>
-            <video id="bigBuckBunnyVideo" preload="auto" autoplay="false" loop="false" src="https://cdn.aframe.io/videos/bunny.mp4" crossorigin="anonymous" muted></video>
-            <img id="play-circle" src="assets/play-circle.png"/>
-            <img id="pause-circle" src="assets/pause-circle.png"/>
-        </a-assets>
-
-        <!-- Add the Zappar Camera & allow user to click on elements by adding -->
-        <!-- a cursor component & identify the raycaster objects for better performance. -->
-        <a-camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .interactive" />
-
-        <!-- Setup our instant tracker and start it in placement mode so the user can -->
-        <!-- choose a location for the object -->
-        <a-entity zappar-image="target: assets/example-tracking-image.zpt">
-
-            <!-- This group will be set visible when the image is in view -->
-            <a-entity visibility-changer visible="false">
-                <a-entity id="videoGroup" position="0 0.5 0">
-                    <!-- Add our video -->
-                    <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video>
-                    
-                    <!-- Play and Pause Buttons -->
-                    <a-entity id="buttons" position="0 -1 0">
-                        <a-plane id="play" class="interactive" play src="#play-circle" position="-0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"> </a-plane>
-                        <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane>
-                    </a-entity>
-                </a-entity>
-               
-            </a-entity>
-        </a-entity>
-    </a-scene>
-</body>
-
+  </body>
 </html>
