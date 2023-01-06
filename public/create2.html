@@ -1,122 +1,114 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
-     <!-- Feather - Open source icons: https://feathericons.com -->
+    <!-- Feather - Open source icons: https://feathericons.com -->
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="create2.css" />
     <!-- Custom components -->
- 
+
     <meta charset="utf-8" />
     <title>Zappar for A-Frame: Instant Tracked Video Example</title>
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
 
-            text-rendering: optimizelegibility;
-            font-family: "Lato",sans-serif;
-            text-align: center;
-            font-weight: 400;
+        text-rendering: optimizelegibility;
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        font-weight: 400;
 
-            background: #f3f8fd;
-            background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
+        background: #f3f8fd;
+        background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+        background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+        background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
 
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
 
-            cursor: default;
+        cursor: default;
 
-            overflow: hidden;
-        }
-        .btn, .btn:visited {
-            position: absolute;
+        overflow: hidden;
+      }
+      .btn,
+      .btn:visited {
+        position: absolute;
 
-            width: 200px;
+        width: 200px;
 
-            padding: 10px;
+        padding: 10px;
 
-            color: #fff;
+        color: #fff;
 
-            border: solid 1px #CE3923;
-            background-color: #CE3923;
+        border: solid 1px #ce3923;
+        background-color: #ce3923;
 
-            border-radius: 10px;
-        }
-        .btn:hover {
-            border: solid 1px #EC472F;
-            background-color: #EC472F;
-        }
-        #zappar-placement-ui {
-            left: calc(50% - 100px);
-            bottom: 30px;
-        }
-        #zappar-replacement-ui {
-            width: 50px;
-            right: 10px;
-            bottom: 10px;
-        }
-        #zappar-replacement-ui svg {
-            margin-top: 3px;
-        }
-        .visible {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity .2s linear;
-        }
-        .hidden {
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s 2s, opacity .2s linear;
-        }
+        border-radius: 10px;
+      }
+      .btn:hover {
+        border: solid 1px #ec472f;
+        background-color: #ec472f;
+      }
+      #zappar-placement-ui {
+        left: calc(50% - 100px);
+        bottom: 30px;
+      }
+      #zappar-replacement-ui {
+        width: 50px;
+        right: 10px;
+        bottom: 10px;
+      }
+      #zappar-replacement-ui svg {
+        margin-top: 3px;
+      }
+      .visible {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.2s linear;
+      }
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 2s, opacity 0.2s linear;
+      }
 
-
-    .postcard-plane{
+      .postcard-plane {
         background-color: pink;
-    }
-
-    
+      }
     </style>
-     <!-- Add our components before the scene so they can initialise in time -->
+    <!-- Add our components before the scene so they can initialise in time -->
     <script>
-        // Register our play component
-        // This component will play the video when an entity holding it is clicked
-        AFRAME.registerComponent('play', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.muted = false;
-                    bigBuckBunnyVideo.play();
-                });
-            },
-        });
+      // Register our play component
+      // This component will play the video when an entity holding it is clicked
+      AFRAME.registerComponent("play", {
+        init: function () {
+          this.el.addEventListener("click", () => {});
+        },
+      });
 
-        // Register our pause component
-        // This component will pause the video when an entity holding it is clicked
-        AFRAME.registerComponent('pause', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.pause();
-                   
-                });
-            },
-        });
-        AFRAME.registerShader('texture-shader', {
-  schema: {
-    uMap: {
-      type: 'map',
-      is: 'uniform'
-    }
-  },
-  vertexShader: `
+      // Register our pause component
+      // This component will pause the video when an entity holding it is clicked
+      AFRAME.registerComponent("pause", {
+        init: function () {
+          this.el.addEventListener("click", () => {});
+        },
+      });
+
+      AFRAME.registerShader("texture-shader", {
+        schema: {
+          uMap: {
+            type: "map",
+            is: "uniform",
+          },
+        },
+        vertexShader: `
     varying vec2 vUv;
 
     void main() {
@@ -124,7 +116,7 @@
       gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
     }
   `,
-  fragmentShader: `
+        fragmentShader: `
     varying vec2 vUv;
 
     uniform sampler2D uMap;
@@ -132,138 +124,271 @@
     void main() {
         gl_FragColor = texture2D(uMap, vUv);
     }
-  `
-});
+  `,
+      });
 
-AFRAME.registerComponent("visibility-changer", {
-            init: function () {
+      AFRAME.registerComponent("visibility-changer", {
+        init: function () {
+          document
+            .getElementById("zappar-placement-ui")
+            .addEventListener("click", () => {
+              document.getElementById("texture").setAttribute("visible", true);
 
-                document.getElementById("zappar-placement-ui").addEventListener('click', ()=>{
-                    document.getElementById("buttons").setAttribute("visible", false);
-                    document.getElementById("showtext").setAttribute("value", "add texture");
-                    document.getElementById("showtext").setAttribute("position", "-0.45 -1 0");
+              document
+                .getElementById("buttons")
+                .setAttribute("position", "-100 -100 -100");
+              document
+                .getElementById("showtext")
+                .setAttribute("value", "add texture");
+              document
+                .getElementById("showtext")
+                .setAttribute("position", "-0.4 -1 0");
 
-                    // position="-0.9 -1 0"
-
-                });
-
-
-            }
-        });
-
+              // position="-0.9 -1 0"
+            });
+        },
+      });
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <a-scene>
-        <!-- Ask user for camera permissions, display some text if permission is denied -->
-        <a-entity zappar-permissions-ui id="permissions"></a-entity>
-        <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
-        <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
+      <!-- Ask user for camera permissions, display some text if permission is denied -->
+      <a-entity zappar-permissions-ui id="permissions"></a-entity>
+      <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
+      <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
 
-        <!-- Get our assets-->
-        <a-assets>
-            <img id="boxTexture" src="https://media.discordapp.net/attachments/873911460055642152/1060853474205634570/avatars_for_profile_9.png" style="opacity: 0.3;">
-            <video id="bigBuckBunnyVideo" preload="auto" autoplay="false" loop="false" src="https://cdn.aframe.io/videos/bunny.mp4" crossorigin="anonymous" muted></video>
-            <img id="play-circle" src="assets/play-circle.png"/>
-            <img id="pause-circle" src="assets/pause-circle.png"/>
-        </a-assets>
+      <!-- Get our assets-->
+      <a-assets>
+        <img id="play-circle" src="assets/play-circle.png" />
+        <img id="pause-circle" src="assets/pause-circle.png" />
+        <img id="x-circle" src="assets/x-circle.png" />
+        <img id="plus-circle" src="assets/plus-circle.png" />
+        <img id="blue" src="assets/blue.png" />
+        <img id="pink" src="assets/pink.png" />
+        <img id="green" src="assets/green.png" />
+        <img id="grey" src="assets/grey.png" />
+        <img id="cream" src="assets/cream.png" />
+        <img id="brown" src="assets/brown.png" />
+      </a-assets>
 
-        <!-- Add the Zappar Camera & allow user to click on elements by adding -->
-        <!-- a cursor component & identify the raycaster objects for better performance. -->
-        <a-camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .interactive" />
+      <!-- Add the Zappar Camera & allow user to click on elements by adding -->
+      <!-- a cursor component & identify the raycaster objects for better performance. -->
+      <a-camera
+        zappar-camera
+        cursor="rayOrigin: mouse; fuse: false;"
+        raycaster="objects: .interactive"
+      />
 
-        <!-- Setup our instant tracker and start it in placement mode so the user can -->
-        <!-- choose a location for the object -->
-        <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+      <!-- Setup our instant tracker and start it in placement mode so the user can -->
+      <!-- choose a location for the object -->
+      <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+        <!-- Include a videoGroup inside our instant tracker -->
+        <a-entity id="videoGroup" position="0 0.5 0">
+          <!-- Add our video -->
+          <a-plane color="#D7CEBC" id="postcard-plane" height="1" width="1.5">
+            <!-- material="shader: texture-shader; uMap: #boxTexture; transparent: true" -->
+          </a-plane>
+          <a-text
+            value="change background color"
+            id="showtext"
+            position="-0.9 -1 0"
+            height="2"
+            width="3.5"
+          ></a-text>
 
-            <!-- Include a videoGroup inside our instant tracker -->
-            <a-entity id="videoGroup" position="0 0.5 0">
-                <!-- Add our video -->
-                <!-- <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video> -->
-                <a-plane color="#D7CEBC" id="postcard-plane" height="1" width="1.5" >
-                    <!-- material="shader: texture-shader; uMap: #boxTexture; transparent: true" -->
-                </a-plane>
-                <a-text value="change background color" id="showtext" position="-0.9 -1 0" height="2" width="3.5"></a-text>
+          <!-- Play and Pause Buttons -->
+          <a-entity
+            id="buttons"
+            position="0 -1 0"
+            visibility-changer
+            visible="true"
+          >
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#D7CEBC"
+              position="-1 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#D7CEBC')"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#94CAF0"
+              position="-0.6 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#94CAF0')"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#F2B8EC"
+              position="-0.2 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#F2B8EC')"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#F6BA83"
+              position="0.2 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#F6BA83')"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#93ECB2"
+              position="0.6 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#93ECB2')"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              id="play"
+              class="interactive"
+              play
+              color="#0E2234"
+              position="1 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="changeClr('#0E2234')"
+            >
+            </a-circle>
 
-                <!-- Play and Pause Buttons -->
-                <a-entity id="buttons" position="0 -1 0"  visibility-changer visible="true">
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#D7CEBC" position="-1 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#D7CEBC')"> </a-circle>
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#94CAF0" position="-0.6 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#94CAF0')"> </a-circle>
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#F2B8EC" position="-0.2 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#F2B8EC')"> </a-circle>
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#F6BA83" position="0.2 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#F6BA83')"> </a-circle>
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#93ECB2" position="0.6 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#93ECB2')"> </a-circle>
-                    <a-circle radius="0.5" id="play" class="interactive" play color="#0E2234" position="1 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#0E2234')"> </a-circle>
+            <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
+          </a-entity>
+          <a-entity
+            id="texture"
+            position="0 -1 0"
+            visibility-changer
+            visible="false"
+          >
+            <a-circle
+              radius="0.5"
+              src="#x-circle"
+              class="interactive"
+              position="-0.2 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="removeTexture()"
+            >
+            </a-circle>
+            <a-circle
+              radius="0.5"
+              src="#plus-circle"
+              class="interactive"
+              position="0.2 0.3 0"
+              scale="0.3 0.3 0.3"
+              material="alpha-test:0.5"
+              onclick="addTexture()"
+            >
+            </a-circle>
 
-   <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
-                </a-entity>
-            </a-entity>
-
+            <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
+          </a-entity>
         </a-entity>
+      </a-entity>
     </a-scene>
 
     <!-- Some UI for the user to tap to indicate they're happy with the placement -->
     <div id="zappar-placement-ui" class="btn visible">next</div>
 
-     <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
-    <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>
+    <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
+    <div id="zappar-replacement-ui" class="btn hidden">
+      <i data-feather="move"></i>
+    </div>
 
     <script>
-
-function changeClr(clr){
-    document.getElementById("postcard-plane").setAttribute("color", clr)
-
-}
-
-document.getElementById("pause").addEventListener('click', () =>{
-document.getElementById("postcard-plane").setAttribute("color", "#FFFFFF")
-})
-        // Assign a variable to the video
-        const bigBuckBunnyVideo = document.getElementById('bigBuckBunnyVideo');
-
-        // Reset the video when it ends
-        bigBuckBunnyVideo.onended = () => {
-            bigBuckBunnyVideo.currentTime = 0;
+      function changeClr(clr) {
+        document.getElementById("postcard-plane").setAttribute("color", clr);
+        const colors = {
+          "#D7CEBC": "cream",
+          "#94CAF0": "blue",
+          "#F2B8EC": "pink",
+          "#F6BA83": "brown",
+          "#93ECB2": "green",
+          "#0E2234": "grey",
         };
+        localStorage.setItem("clr", colors[clr]);
+      }
 
-        // Assign variables to the UI elements
-        const placementUI = document.getElementById("zappar-placement-ui");
-        const replacementUI = document.getElementById("zappar-replacement-ui");
+      function addTexture() {
+        console.log("a");
+        var x = localStorage.getItem("clr");
+        console.log(x);
+        const src = "src: #" + x;
+        document.getElementById("postcard-plane").setAttribute("material", src);
+      }
 
-        // Assign a variable to the instant tracker group
-        const instantGroup = document.getElementById("instant-tracker");
+      function removeTexture() {
+        document.getElementById("postcard-plane").setAttribute("material", "color : #ffffff");
+      }
 
-        // When the user taps on the placement UI
-        placementUI.addEventListener("click", function() {
-            document.getElementById("buttons").setAttribute("visible",false);
+      document.getElementById("pause").addEventListener("click", () => {
+        document
+          .getElementById("postcard-plane")
+          .setAttribute("color", "#FFFFFF");
+      });
 
-            // Set placement mode to false
-            // instantGroup.setAttribute("zappar-instant", "placement-mode: false");
+      // Assign variables to the UI elements
+      const placementUI = document.getElementById("zappar-placement-ui");
+      const replacementUI = document.getElementById("zappar-replacement-ui");
 
-            // // Hide the placement UI
-            // placementUI.classList.remove("visible");
-            // placementUI.classList.add("hidden");
-            // // Show the placement UI
-            // replacementUI.classList.remove("hidden");
-            // replacementUI.classList.add("visible");
-        });
+      // Assign a variable to the instant tracker group
+      const instantGroup = document.getElementById("instant-tracker");
 
-        // When the user taps on the replacement UI
-        replacementUI.addEventListener("click", function() {
-            // Set placement mode to true
-            instantGroup.setAttribute("zappar-instant", "placement-mode: true");
+      // When the user taps on the placement UI
+      placementUI.addEventListener("click", function () {
+        document.getElementById("buttons").setAttribute("width", 0);
 
-            // Hide the replacement UI
-            replacementUI.classList.remove("visible");
-            replacementUI.classList.add("hidden");
-            // Show the placement UI
-            placementUI.classList.remove("hidden");
-            placementUI.classList.add("visible");
-        });
+        // Set placement mode to false
+        // instantGroup.setAttribute("zappar-instant", "placement-mode: false");
 
-        // Update our feather icons
-        feather.replace();
+        // // Hide the placement UI
+        // placementUI.classList.remove("visible");
+        // placementUI.classList.add("hidden");
+        // // Show the placement UI
+        // replacementUI.classList.remove("hidden");
+        // replacementUI.classList.add("visible");
+      });
+
+      // When the user taps on the replacement UI
+      replacementUI.addEventListener("click", function () {
+        // Set placement mode to true
+        instantGroup.setAttribute("zappar-instant", "placement-mode: true");
+
+        // Hide the replacement UI
+        replacementUI.classList.remove("visible");
+        replacementUI.classList.add("hidden");
+        // Show the placement UI
+        placementUI.classList.remove("hidden");
+        placementUI.classList.add("visible");
+      });
+
+      // Update our feather icons
+      feather.replace();
     </script>
-</body>
-
+  </body>
 </html>
