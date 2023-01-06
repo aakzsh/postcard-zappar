@@ -6,10 +6,9 @@
     <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
      <!-- Feather - Open source icons: https://feathericons.com -->
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="create2.css" />
     <!-- Custom components -->
-    <script src="components.js"></script>
-
+ 
     <meta charset="utf-8" />
     <title>Zappar for A-Frame: Instant Tracked Video Example</title>
     <style>
@@ -79,6 +78,13 @@
             opacity: 0;
             transition: visibility 0s 2s, opacity .2s linear;
         }
+
+
+    .postcard-plane{
+        background-color: pink;
+    }
+
+    
     </style>
      <!-- Add our components before the scene so they can initialise in time -->
     <script>
@@ -99,32 +105,57 @@
             init: function () {
                 this.el.addEventListener('click', () => {
                     bigBuckBunnyVideo.pause();
+                   
                 });
             },
         });
+        AFRAME.registerShader('texture-shader', {
+  schema: {
+    uMap: {
+      type: 'map',
+      is: 'uniform'
+    }
+  },
+  vertexShader: `
+    varying vec2 vUv;
 
-        //Show/hide our content when our image is visible/not-visible
-        AFRAME.registerComponent("visibility-changer", {
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+  `,
+  fragmentShader: `
+    varying vec2 vUv;
+
+    uniform sampler2D uMap;
+
+    void main() {
+        gl_FragColor = texture2D(uMap, vUv);
+    }
+  `
+});
+
+AFRAME.registerComponent("visibility-changer", {
             init: function () {
-                this.el.sceneEl.addEventListener('zappar-visible', () => this.el.setAttribute("visible", true));
-                this.el.sceneEl.addEventListener('zappar-notvisible', () => this.el.setAttribute("visible", false));
+
+                document.getElementById("zappar-placement-ui").addEventListener('click', ()=>{
+                    document.getElementById("buttons").setAttribute("visible", false);
+                    document.getElementById("showtext").setAttribute("value", "add texture");
+                    document.getElementById("showtext").setAttribute("position", "-0.45 -1 0");
+
+                    // position="-0.9 -1 0"
+
+                });
+
+
             }
         });
+
     </script>
 </head>
 
 <body>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script type="text/javascript" src="app.js"></script>
-
-
-<div>
-    
     <a-scene>
-       
-
         <!-- Ask user for camera permissions, display some text if permission is denied -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
@@ -132,6 +163,7 @@
 
         <!-- Get our assets-->
         <a-assets>
+            <img id="boxTexture" src="https://media.discordapp.net/attachments/873911460055642152/1060853474205634570/avatars_for_profile_9.png" style="opacity: 0.3;">
             <video id="bigBuckBunnyVideo" preload="auto" autoplay="false" loop="false" src="https://cdn.aframe.io/videos/bunny.mp4" crossorigin="anonymous" muted></video>
             <img id="play-circle" src="assets/play-circle.png"/>
             <img id="pause-circle" src="assets/pause-circle.png"/>
@@ -143,33 +175,49 @@
 
         <!-- Setup our instant tracker and start it in placement mode so the user can -->
         <!-- choose a location for the object -->
-        <a-entity zappar-image="target: assets/example-tracking-image.zpt">
+        <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
 
-            <!-- This group will be set visible when the image is in view -->
-            <a-entity visibility-changer visible="false">
-                <a-entity id="videoGroup" position="0 0.5 0">
-                    <!-- Add our video -->
-                    <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video>
-                    
-                    <!-- Play and Pause Buttons -->
-                    <a-entity id="buttons" position="0 -1 0">
-                        <a-plane id="play" class="interactive" play src="#play-circle" position="-0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"> </a-plane>
-                        <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane>
-                    </a-entity>
+            <!-- Include a videoGroup inside our instant tracker -->
+            <a-entity id="videoGroup" position="0 0.5 0">
+                <!-- Add our video -->
+                <!-- <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video> -->
+                <a-plane color="#D7CEBC" id="postcard-plane" height="1" width="1.5" >
+                    <!-- material="shader: texture-shader; uMap: #boxTexture; transparent: true" -->
+                </a-plane>
+                <a-text value="change background color" id="showtext" position="-0.9 -1 0" height="2" width="3.5"></a-text>
+
+                <!-- Play and Pause Buttons -->
+                <a-entity id="buttons" position="0 -1 0"  visibility-changer visible="true">
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#D7CEBC" position="-1 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#D7CEBC')"> </a-circle>
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#94CAF0" position="-0.6 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#94CAF0')"> </a-circle>
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#F2B8EC" position="-0.2 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#F2B8EC')"> </a-circle>
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#F6BA83" position="0.2 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#F6BA83')"> </a-circle>
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#93ECB2" position="0.6 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#93ECB2')"> </a-circle>
+                    <a-circle radius="0.5" id="play" class="interactive" play color="#0E2234" position="1 0.3 0" scale="0.3 0.3 0.3" material="alpha-test:0.5" onclick="changeClr('#0E2234')"> </a-circle>
+
+   <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
                 </a-entity>
-               
             </a-entity>
+
         </a-entity>
     </a-scene>
 
-</div>
     <!-- Some UI for the user to tap to indicate they're happy with the placement -->
-    <!-- <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div> -->
+    <div id="zappar-placement-ui" class="btn visible">next</div>
 
      <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
-    <!-- <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>W -->
+    <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>
 
-    <!-- <script>
+    <script>
+
+function changeClr(clr){
+    document.getElementById("postcard-plane").setAttribute("color", clr)
+
+}
+
+document.getElementById("pause").addEventListener('click', () =>{
+document.getElementById("postcard-plane").setAttribute("color", "#FFFFFF")
+})
         // Assign a variable to the video
         const bigBuckBunnyVideo = document.getElementById('bigBuckBunnyVideo');
 
@@ -187,15 +235,17 @@
 
         // When the user taps on the placement UI
         placementUI.addEventListener("click", function() {
-            // Set placement mode to false
-            instantGroup.setAttribute("zappar-instant", "placement-mode: false");
+            document.getElementById("buttons").setAttribute("visible",false);
 
-            // Hide the placement UI
-            placementUI.classList.remove("visible");
-            placementUI.classList.add("hidden");
-            // Show the placement UI
-            replacementUI.classList.remove("hidden");
-            replacementUI.classList.add("visible");
+            // Set placement mode to false
+            // instantGroup.setAttribute("zappar-instant", "placement-mode: false");
+
+            // // Hide the placement UI
+            // placementUI.classList.remove("visible");
+            // placementUI.classList.add("hidden");
+            // // Show the placement UI
+            // replacementUI.classList.remove("hidden");
+            // replacementUI.classList.add("visible");
         });
 
         // When the user taps on the replacement UI
@@ -213,9 +263,7 @@
 
         // Update our feather icons
         feather.replace();
-    </script> -->
-
-
+    </script>
 </body>
 
 </html>

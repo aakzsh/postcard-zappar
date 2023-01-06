@@ -14,12 +14,40 @@
   </head>
 
   <body>
-<h1>DESIGN AN AR POSTCARD</h1>
+
+    <div class="content" style="display: none;">
+      <h1>CREATE AN AR POSTCARD</h1>
+      <P class="subtitle">fill out the following details and then design your customized postcard in the next step</P>
+      <br><br>
+      <div class="inside">
+        <P>Add personal note</P>
+      <input type="text" class="note" name="note" id="note" placeholder="put your note here" maxlength="50">
+      <br>
+      <P>Add four images (use 1:1 ratio for best view)</P>
+      <div class="images-upload">
+        <input type="file" name="img1" id="img1" accept="image/*">
+      <input type="file" name="img2" id="img2" accept="image/*">
+      <input type="file" name="img3" id="img3" accept="image/*">
+      <input type="file" name="img4" id="img4" accept="image/*">
+      </div>
+
+      <br>
+      <P>Add a video</P>
+      <input type="file" name="vid" id="vid" accept="video/*">
+      <br><br>
+      <button class="next">next</button>
+      
+      </div>
+    </div>
+
+<div class="design" style="display: block;">
+  <h1>DESIGN YOUR AR POSTCARD</h1>
 <P class="subtitle">to send to your loved ones</P>
 
 <div class="post-par"><div class="postcard"></div></div>
 
-<button class="next">next</button>
+<center><button class="next">next</button></center>
+</div>
 
     <!-- <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">
       db check

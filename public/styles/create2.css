@@ -1,0 +1,66 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    text-rendering: optimizelegibility;
+    font-family: "Lato",sans-serif;
+    text-align: center;
+    font-weight: 400;
+
+    background: #f3f8fd;
+    background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    cursor: default;
+
+    overflow: hidden;
+}
+.btn, .btn:visited {
+    position: absolute;
+
+    width: 200px;
+
+    padding: 10px;
+
+    color: #fff;
+
+    border: solid 1px #CE3923;
+    background-color: #CE3923;
+
+    border-radius: 10px;
+}
+.btn:hover {
+    border: solid 1px #EC472F;
+    background-color: #EC472F;
+}
+#zappar-placement-ui {
+    left: calc(50% - 100px);
+    bottom: 30px;
+}
+#zappar-replacement-ui {
+    width: 50px;
+    right: 10px;
+    bottom: 10px;
+}
+#zappar-replacement-ui svg {
+    margin-top: 3px;
+}
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .2s linear;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity .2s linear;
+}
