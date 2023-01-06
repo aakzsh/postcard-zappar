@@ -114,7 +114,16 @@
 </head>
 
 <body>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+
+
     <a-scene>
+       
+
         <!-- Ask user for camera permissions, display some text if permission is denied -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
@@ -203,6 +212,8 @@
         // Update our feather icons
         feather.replace();
     </script> -->
+
+
 </body>
 
 </html>
