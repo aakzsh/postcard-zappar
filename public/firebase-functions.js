@@ -13,17 +13,19 @@ function x() {
         console.log(value)
         const videourl = value['video-url']
         const bigBuckBunnyVideo = document.getElementById('bigBuckBunnyVideo');
-    
+        const front = document.getElementById('front');
+        const top = document.getElementById('top');
+        const right = document.getElementById('right');
+        const left = document.getElementById('left');
+
         bigBuckBunnyVideo.src = videourl
+        front.src = value['image-urls'][0]
+        top.src = value['image-urls'][1]
+        left.src = value['image-urls'][2]
+        right.src = value['image-urls'][3]
 
     });
 }
-
-const placementUI = document.getElementById("zappar-placement-ui");
-
-placementUI.addEventListener('click', () => {
-    x();
-})
 
 document.addEventListener('DOMContentLoaded',() => {
     x();
