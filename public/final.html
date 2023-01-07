@@ -26,6 +26,7 @@
 <div class="post-par"><div id="posty" class="postcard">
   <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO"  class="postcard-qr"  /> -->
   <canvas id="qr-code"></canvas>  <!-- <img src="https://media.discordapp.net/attachments/873911460055642152/1060903835121483817/EAAAAASUVORK5CYII.png" class="postcard-qr" alt=""> -->
+  <p class="coderoom" style="margin-top: -0.3rem; margin-bottom: -0.3rem;" id="coderoom">code</p>
   <p class="postcard-title">AR Postcard</p>
   <p class="postcard-subtitle">made especially for you</p>
   <p style="margin-top: -1rem; font-size: 1rem;">powered by ZapWorks</p>
@@ -54,6 +55,10 @@ document.getElementById("posty").style.color = y;
 var clr = localStorage.getItem("clr");
 document.getElementById("posty").style.backgroundColor = x;
 var isTexture = localStorage.getItem("isTexture");
+var code = localStorage.getItem("code");
+
+document.getElementById("coderoom").innerHTML = 'code: '+code;
+
 
 if(isTexture){
   console.log("hemlo")
@@ -64,7 +69,7 @@ if(isTexture){
 
 
 // ("mascotchild").style.backgroundColor = x
-var qrtext = "https://aakzsh.github.io/ar-postcard/";
+var qrtext = "https://8nqe6.zappar.io/2373053848413461853/1.0.1/scan.html?code="+code;
                 // document.getElementById("qr-result").innerHTML = "QR code for " + qrtext +":";
                 // alert(qrtext);
                 var qr;
@@ -72,7 +77,7 @@ var qrtext = "https://aakzsh.github.io/ar-postcard/";
                     qr = new QRious({
                     element: document.getElementById('qr-code'),
                     size: 150,
-                    value: 'https://aakzsh.github.io/ar-postcard/'
+                    value: qrtext
                 });
             })();
             
