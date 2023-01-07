@@ -1,7 +1,10 @@
 import firebaseConfig from '../variables.js'
+// import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
 
+
+// console.log(firebase)
 var messagesRef = firebase.firestore().collection("postcards");
 // .ref('Collected Data');
 
@@ -43,7 +46,9 @@ export async function getData(code) {
 
 
 
-async function uploadFiles(file){
+
+export async function uploadFiles(file){
+  console.log("check", firebase.storage() )
     var storageRef = firebase.storage().ref();
 var imagesRef = storageRef.child('images/mountains.jpg');
 

@@ -209,12 +209,16 @@ step++;
 
       <!-- Add the Zappar Camera & allow user to click on elements by adding -->
       <!-- a cursor component & identify the raycaster objects for better performance. -->
- 
-      <a-camera
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+      <!-- <a-camera
         zappar-camera
         cursor="rayOrigin: mouse; fuse: false;"
         raycaster="objects: .interactive"
-      />
+      /> -->
+
+      <a-sky src="./assets/puydesancy.jpg" rotation="0 -130 0"></a-sky>
       <!-- Setup our instant tracker and start it in placement mode so the user can -->
       <!-- choose a location for the object -->
       <a-entity zappar-instant="placement-mode: true" id="instant-tracker"  rotation="0 0 0" position="0 50 100">

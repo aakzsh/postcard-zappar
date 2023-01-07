@@ -15,7 +15,6 @@
 
   <body>
     
-
     <div class="content" style="display: block;">
       <h1>CREATE AN AR POSTCARD</h1>
       <P class="subtitle">fill out the following details and then design your customized postcard in the next step</P>
@@ -36,7 +35,7 @@
       <P>Add a video</P>
       <input type="file" name="vid" id="vid" accept="video/*">
       <br><br>
-      <button class="next" onclick="uploadFiles(document.getElementById('img1').files[0])">next</button>
+      <button id="nxt" class="next">next</button>
       
       </div>
     </div>
@@ -109,8 +108,10 @@
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js"></script>
     <script src="firebase-helper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
 
     <script>
 
@@ -176,20 +177,9 @@ var qrtext = "hehehheheh";
         });
       }
 
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", submitForm);
 
-      function submitForm(e) {
-        e.preventDefault();
-
-        // Get values
-        var name = getInputVal("name");
-        var email = getInputVal("email");
-
-        saveMessage(name, email);
-        document.getElementById("contactForm").reset();
-      }
     </script>
+        <script type="module" src="firebase-create-functions.js"></script>
+
   </body>
 </html>
