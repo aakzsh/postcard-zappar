@@ -170,7 +170,7 @@
 
         <!-- Setup our instant tracker and start it in placement mode so the user can -->
         <!-- choose a location for the object -->
-        <a-entity zappar-image="target: assets/example-tracking-image.zpt">
+        <a-entity zappar-face>
           <!-- This group will be set visible when the image is in view -->
           <a-entity visibility-changer visible="false">
             <a-entity id="videoGroup" position="0 0.5 0">
@@ -213,11 +213,12 @@
             <a-plane
                   id="openEnvelope"
                   class="interactive"
-                  openEnvelope"
+                  openEnvelope
                   src="#open"
                   position="-1.5 0 0"
                   rotation="-30 0 0"
                   material="alpha-test:0.5"
+                  onclick="console.log('check')"
                 ></a-plane>
 
           
