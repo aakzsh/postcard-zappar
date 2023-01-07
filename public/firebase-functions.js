@@ -19,12 +19,14 @@ function x() {
         const top = document.getElementById('top');
         const right = document.getElementById('right');
         const left = document.getElementById('left');
+        const note = document.getElementById('note');
 
         bigBuckBunnyVideo.src = videourl
         front.src = value['image-urls'][0]
         top.src = value['image-urls'][1]
         left.src = value['image-urls'][2]
         right.src = value['image-urls'][3]
+        note.setAttribute('value', value['note'])
 
     });
 }

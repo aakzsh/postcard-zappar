@@ -115,14 +115,6 @@
           );
         },
       });
-
-      AFRAME.registerComponent("openEnvelope", {
-        init: function () {
-            this.el.addEventListener("click", () =>
-                console.log("hh")
-            );
-        },
-      });
     </script>
   </head>
 
@@ -211,14 +203,41 @@
             </a-box>
 
             <a-plane
+                  id="closeEnvelope"
+                  class="interactive"
+                  closeEnvelope
+                  src="#close"
+                  position="100 100 100"
+                  rotation="-30 0 0"
+                  material="alpha-test:0.5"
+                  onclick="closeNote()"
+                ></a-plane>
+
+            <a-plane
                   id="openEnvelope"
                   class="interactive"
-                  openEnvelope"
+                  openEnvelope
                   src="#open"
                   position="-1.5 0 0"
                   rotation="-30 0 0"
                   material="alpha-test:0.5"
+                  onclick="openNote()"
                 ></a-plane>
+
+                
+                    <a-text
+            value="AR Postcard,\npowered by ZapWorks"
+            id="note"
+            position="-2 1 0"
+color="black"
+            height="2"
+            width="3"
+            visible = "false"
+          ></a-text>
+
+          <a-entity position="-2 1.5 -2.9" bmfont-text="color: black; text: Frodo's second fav ring; align: center;" rotation="" scale="2.2 2.2 2.2" visible="false"></a-entity>
+        
+                
 
           
           </a-entity>
@@ -277,8 +296,21 @@
         feather.replace();
     </script> -->
     <script type="module" src="firebase-functions.js"></script>
-    <!-- <script>
-      x();
-    </script> -->
+    <script>
+        const openE = document.getElementById("openEnvelope")
+        const closeE = document.getElementById("closeEnvelope")
+        const note = document.getElementById('note');
+      function openNote(){
+        openE.setAttribute('position','100 100 100')
+        closeE.setAttribute('position','-1.5 0 0')
+        note.setAttribute('visible', true)
+      }
+
+      function closeNote() {
+        openE.setAttribute('position','-1.5 0 0')
+        closeE.setAttribute('position', '100 100 100')
+        note.setAttribute('visible', false)
+      }
+    </script>
   </body>
 </html>
