@@ -1,13 +1,15 @@
 import { getData } from "./firebase-helper.js";
-console.log("hehe");
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-// const code = urlParams['code'];
-const code = "demoid"
-console.log(code);
+
 
 
 function x() {
+    console.log("hehe");
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams)
+    const code = urlParams.get("code");
+    // const code = "demoid"
+    console.log(code);
     console.log("Called")
     getData(code).then((value) => {
         console.log(value)

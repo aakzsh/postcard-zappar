@@ -115,6 +115,14 @@
           );
         },
       });
+
+      AFRAME.registerComponent("openEnvelope", {
+        init: function () {
+            this.el.addEventListener("click", () =>
+                console.log("hh")
+            );
+        },
+      });
     </script>
   </head>
 
@@ -143,10 +151,13 @@
           ></video>
           <img id="play-circle" src="assets/play-circle.png" />
           <img id="pause-circle" src="assets/pause-circle.png" />
+          <img id="open" src="assets/envelope-open.png">
+          <img id="close" src="assets/envelope-closed.png">
           <img id="front" src="assets/play-circle.png">
           <img id="left" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
           <img id="right" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
           <img id="top" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
+          
         </a-assets>
  
         <!-- Add the Zappar Camera & allow user to click on elements by adding -->
@@ -191,11 +202,25 @@
                   scale="0.5 0.5 0.5"
                   material="alpha-test:0.5"
                 ></a-plane>
+                
               </a-entity>
             </a-entity>
 
             <a-box position="1.5 0 -2" multisrc="src4:#front;src2:#top;src0:#left;src1:#right">
+
             </a-box>
+
+            <a-plane
+                  id="openEnvelope"
+                  class="interactive"
+                  openEnvelope"
+                  src="#open"
+                  position="-1.5 0 0"
+                  rotation="-30 0 0"
+                  material="alpha-test:0.5"
+                ></a-plane>
+
+          
           </a-entity>
         </a-entity>
       </a-scene>
@@ -252,8 +277,8 @@
         feather.replace();
     </script> -->
     <script type="module" src="firebase-functions.js"></script>
-    <script>
+    <!-- <script>
       x();
-    </script>
+    </script> -->
   </body>
 </html>
