@@ -36,7 +36,7 @@ button{
     box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.466);
 }
 
-input{
+.note{
     margin-right: 1rem;
     cursor: pointer;
     background-color: black;
@@ -88,11 +88,13 @@ input{
 }
 
 .inside{
-    padding-left: 30rem;
-    padding-right: 30rem;
+    /* padding-left: 30rem;
+    padding-right: 30rem; */
+
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
+    align-items: center;
     /* gap: 1rem; */
 }
 
