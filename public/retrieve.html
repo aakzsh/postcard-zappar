@@ -21,20 +21,8 @@
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="firebase-helper.js"></script>
+    <script type="module" src="firebase-helper.js"></script>
 
-    <script>
-        console.log("hehe")
-        const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const code = urlParams.get('code')
-console.log(code);
-
-getData(code).then((value)=>{
-    console.log("check")
-    console.log(value)
-})
-    // document.get
-    </script>
+    <script type="module" src="firebase-functions.js"></script>
   </body>
 </html>

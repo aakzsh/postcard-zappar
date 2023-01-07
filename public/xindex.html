@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
-     <!-- Feather - Open source icons: https://feathericons.com -->
+    <script src="https://cdn.rawgit.com/elbobo/aframe-multisrc-component/b6d23310/dist/0.3/aframe-multisrc-component.js"></script>
+    <!-- Feather - Open source icons: https://feathericons.com -->
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="style.css" />
     <!-- Custom components -->
@@ -13,118 +13,118 @@
     <meta charset="utf-8" />
     <title>Zappar for A-Frame: Instant Tracked Video Example</title>
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
 
-            text-rendering: optimizelegibility;
-            font-family: "Lato",sans-serif;
-            text-align: center;
-            font-weight: 400;
+        text-rendering: optimizelegibility;
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        font-weight: 400;
 
-            background: #f3f8fd;
-            background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
-            background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
+        background: #f3f8fd;
+        background: -moz-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+        background: -webkit-linear-gradient(top, #f3f8fd 0%, #ffffff 100%);
+        background: linear-gradient(to bottom, #f3f8fd 0%, #ffffff 100%);
 
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
 
-            cursor: default;
+        cursor: default;
 
-            overflow: hidden;
-        }
-        .btn, .btn:visited {
-            position: absolute;
+        overflow: hidden;
+      }
+      .btn,
+      .btn:visited {
+        position: absolute;
 
-            width: 200px;
+        width: 200px;
 
-            padding: 10px;
+        padding: 10px;
 
-            color: #fff;
+        color: #fff;
 
-            border: solid 1px #CE3923;
-            background-color: #CE3923;
+        border: solid 1px #ce3923;
+        background-color: #ce3923;
 
-            border-radius: 10px;
-        }
-        .btn:hover {
-            border: solid 1px #EC472F;
-            background-color: #EC472F;
-        }
-        #zappar-placement-ui {
-            left: calc(50% - 100px);
-            bottom: 30px;
-        }
-        #zappar-replacement-ui {
-            width: 50px;
-            right: 10px;
-            bottom: 10px;
-        }
-        #zappar-replacement-ui svg {
-            margin-top: 3px;
-        }
-        .visible {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity .2s linear;
-        }
-        .hidden {
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s 2s, opacity .2s linear;
-        }
+        border-radius: 10px;
+      }
+      .btn:hover {
+        border: solid 1px #ec472f;
+        background-color: #ec472f;
+      }
+      #zappar-placement-ui {
+        left: calc(50% - 100px);
+        bottom: 30px;
+      }
+      #zappar-replacement-ui {
+        width: 50px;
+        right: 10px;
+        bottom: 10px;
+      }
+      #zappar-replacement-ui svg {
+        margin-top: 3px;
+      }
+      .visible {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.2s linear;
+      }
+      .hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 2s, opacity 0.2s linear;
+      }
     </style>
-     <!-- Add our components before the scene so they can initialise in time -->
+    <!-- Add our components before the scene so they can initialise in time -->
     <script>
-        // Register our play component
-        // This component will play the video when an entity holding it is clicked
-        AFRAME.registerComponent('play', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.muted = false;
-                    bigBuckBunnyVideo.play();
-                });
-            },
-        });
+      // Register our play component
+      // This component will play the video when an entity holding it is clicked
+      AFRAME.registerComponent("play", {
+        init: function () {
+          this.el.addEventListener("click", () => {
+            bigBuckBunnyVideo.muted = false;
+            bigBuckBunnyVideo.play();
+          });
+        },
+      });
 
-        // Register our pause component
-        // This component will pause the video when an entity holding it is clicked
-        AFRAME.registerComponent('pause', {
-            init: function () {
-                this.el.addEventListener('click', () => {
-                    bigBuckBunnyVideo.pause();
-                });
-            },
-        });
+      // Register our pause component
+      // This component will pause the video when an entity holding it is clicked
+      AFRAME.registerComponent("pause", {
+        init: function () {
+          this.el.addEventListener("click", () => {
+            bigBuckBunnyVideo.pause();
+          });
+        },
+      });
 
-        //Show/hide our content when our image is visible/not-visible
-        AFRAME.registerComponent("visibility-changer", {
-            init: function () {
-                this.el.sceneEl.addEventListener('zappar-visible', () => this.el.setAttribute("visible", true));
-                this.el.sceneEl.addEventListener('zappar-notvisible', () => this.el.setAttribute("visible", false));
-            }
-        });
+      //Show/hide our content when our image is visible/not-visible
+      AFRAME.registerComponent("visibility-changer", {
+        init: function () {
+          this.el.sceneEl.addEventListener("zappar-visible", () =>
+            this.el.setAttribute("visible", true)
+          );
+          this.el.sceneEl.addEventListener("zappar-notvisible", () =>
+            this.el.setAttribute("visible", false)
+          );
+        },
+      });
     </script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script type="text/javascript" src="app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 
-
-<div>
-    
-    <a-scene>
-       
-
+    <div>
+      <a-scene>
         <!-- Ask user for camera permissions, display some text if permission is denied -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
@@ -132,41 +132,78 @@
 
         <!-- Get our assets-->
         <a-assets>
-            <video id="bigBuckBunnyVideo" preload="auto" autoplay="false" loop="false" src="https://cdn.aframe.io/videos/bunny.mp4" crossorigin="anonymous" muted></video>
-            <img id="play-circle" src="assets/play-circle.png"/>
-            <img id="pause-circle" src="assets/pause-circle.png"/>
+          <video
+            id="bigBuckBunnyVideo"
+            preload="auto"
+            autoplay="false"
+            loop="false"
+            src="https://cdn.aframe.io/videos/bunny.mp4"
+            crossorigin="anonymous"
+            muted
+          ></video>
+          <img id="play-circle" src="assets/play-circle.png" />
+          <img id="pause-circle" src="assets/pause-circle.png" />
+          <img id="front" src="assets/play-circle.png">
+          <img id="left" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
+          <img id="right" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
+          <img id="top" src="https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg">
         </a-assets>
 
         <!-- Add the Zappar Camera & allow user to click on elements by adding -->
         <!-- a cursor component & identify the raycaster objects for better performance. -->
-        <a-camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .interactive" />
+        <a-camera
+          zappar-camera
+          cursor="rayOrigin: mouse; fuse: false;"
+          raycaster="objects: .interactive"
+        />
 
         <!-- Setup our instant tracker and start it in placement mode so the user can -->
         <!-- choose a location for the object -->
         <a-entity zappar-image="target: assets/example-tracking-image.zpt">
+          <!-- This group will be set visible when the image is in view -->
+          <a-entity visibility-changer visible="false">
+            <a-entity id="videoGroup" position="0 0.5 0">
+              <!-- Add our video -->
+              <a-video
+                id="bigBuckBunny"
+                src="#bigBuckBunnyVideo"
+                scale="1.35 1 1"
+              ></a-video>
 
-            <!-- This group will be set visible when the image is in view -->
-            <a-entity visibility-changer visible="false">
-                <a-entity id="videoGroup" position="0 0.5 0">
-                    <!-- Add our video -->
-                    <a-video id="bigBuckBunny" src="#bigBuckBunnyVideo" scale="1.35 1 1"></a-video>
-                    
-                    <!-- Play and Pause Buttons -->
-                    <a-entity id="buttons" position="0 -1 0">
-                        <a-plane id="play" class="interactive" play src="#play-circle" position="-0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"> </a-plane>
-                        <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane>
-                    </a-entity>
-                </a-entity>
-               
+              <!-- Play and Pause Buttons -->
+              <a-entity id="buttons" position="0 -1 0">
+                <a-plane
+                  id="play"
+                  class="interactive"
+                  play
+                  src="#play-circle"
+                  position="-0.3 0 0"
+                  scale="0.5 0.5 0.5"
+                  material="alpha-test:0.5"
+                >
+                </a-plane>
+                <a-plane
+                  id="pause"
+                  class="interactive"
+                  pause
+                  src="#pause-circle"
+                  position="0.3 0 0"
+                  scale="0.5 0.5 0.5"
+                  material="alpha-test:0.5"
+                ></a-plane>
+              </a-entity>
             </a-entity>
+
+            <a-box position="1.5 0 -2" multisrc="src4:#front">
+            </a-box>
+          </a-entity>
         </a-entity>
-    </a-scene>
-
-</div>
+      </a-scene>
+    </div>
     <!-- Some UI for the user to tap to indicate they're happy with the placement -->
-    <!-- <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div> -->
+    <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div>
 
-     <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
+    <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
     <!-- <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>W -->
 
     <!-- <script>
@@ -186,7 +223,7 @@
         const instantGroup = document.getElementById("instant-tracker");
 
         // When the user taps on the placement UI
-        placementUI.addEventListener("click", function() {
+        const placementUI = document.getElementById("zappar-placement-ui");r("click", function() {
             // Set placement mode to false
             instantGroup.setAttribute("zappar-instant", "placement-mode: false");
 
@@ -214,8 +251,6 @@
         // Update our feather icons
         feather.replace();
     </script> -->
-
-
-</body>
-
+    <script type="module" src="firebase-functions.js"></script>
+  </body>
 </html>

@@ -1,4 +1,4 @@
-import firebaseConfig from "../variables";
+import firebaseConfig from '../variables.js'
 
 firebase.initializeApp(firebaseConfig);
 
@@ -19,11 +19,11 @@ function saveMessage(name, email) {
   });
 }
 
-async function getData(code) {
+export async function getData(code) {
   // var newMessageRef = messagesRef.push();
   var docRef = messagesRef.doc(code);
 
-  docRef
+  return docRef
     .get()
     .then((doc) => {
       if (doc.exists) {
@@ -32,6 +32,7 @@ async function getData(code) {
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
+        return "no such doc"
       }
     })
     .catch((error) => {
