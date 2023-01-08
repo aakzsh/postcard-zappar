@@ -208,7 +208,7 @@
                   closeEnvelope
                   src="#close"
                   position="100 100 100"
-                  rotation="-30 0 0"
+                  rotation="-45 0 0"
                   material="alpha-test:0.5"
                   onclick="closeNote()"
                 ></a-plane>
@@ -224,24 +224,28 @@
                   onclick="openNote()"
                 ></a-plane>
 
-                
-                    <a-text
-            value="AR Postcard,\npowered by ZapWorks"
-            id="note"
-            position="-2 1 0"
-color="black"
-            height="2"
-            width="3"
-            visible = "false"
-          ></a-text>
+            <a-plane class="interactive" id="notecard" height="2" width="2.5" color="pink" position="-2 1 -1" visible="false" onclick="closeNote()">
 
-          <a-entity position="-2 1.5 -2.9" bmfont-text="color: black; text: Frodo's second fav ring; align: center;" rotation="" scale="2.2 2.2 2.2" visible="false"></a-entity>
-        
-                
+            </a-plane>   
+            <a-text
+                  class="interactive"
+                  value="AR Postcard,\npowered by ZapWorks"
+                  id="note"
+                  position="-2.6 1 0"
+                  color="black"
+                  visible = "false"
+                  width = "2"
+                  wrap-count = "20"
+                  onclick="closeNote()"
+                ></a-text>
 
+              
           
           </a-entity>
         </a-entity>
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
+<a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 1 1"></a-entity>
+
       </a-scene>
     </div>
     <!-- Some UI for the user to tap to indicate they're happy with the placement -->
@@ -300,16 +304,19 @@ color="black"
         const openE = document.getElementById("openEnvelope")
         const closeE = document.getElementById("closeEnvelope")
         const note = document.getElementById('note');
+        const notecard = document.getElementById('notecard');
       function openNote(){
         openE.setAttribute('position','100 100 100')
         closeE.setAttribute('position','-1.5 0 0')
         note.setAttribute('visible', true)
+        notecard.setAttribute('visible', true)
       }
 
       function closeNote() {
         openE.setAttribute('position','-1.5 0 0')
         closeE.setAttribute('position', '100 100 100')
         note.setAttribute('visible', false)
+        notecard.setAttribute('visible', false)
       }
     </script>
   </body>
