@@ -64,7 +64,7 @@ export async function uploadVidFiles(file, name){
     var storageRef = firebase.storage().ref();
 var imagesRef = storageRef.child('videos/'+name);
 
-imagesRef.put(file).then((snapshot) => {
+return imagesRef.put(file).then((snapshot) => {
     console.log('Uploaded a blob or file!');
   });
 

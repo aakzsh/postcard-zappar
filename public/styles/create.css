@@ -186,8 +186,8 @@ video::-webkit-media-controls-panel { display: none ! important; opacity: 1 ! im
 
 top: -18rem;
 left: 20rem;
-background-color: #039BE5;
-border: 10px solid #90CAF9;
+/* background-color: #039BE5; */
+/* border: 10px solid #90CAF9; */
     /* top: -5rem; */
     /* background: repeating-linear-gradient(
         45deg,
@@ -198,5 +198,5 @@ border: 10px solid #90CAF9;
       ); */
 
       height: 5rem;
-      width: 10rem;
+      width: 13rem;
 }
