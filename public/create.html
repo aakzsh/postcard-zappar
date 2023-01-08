@@ -25,22 +25,24 @@
       <P class="subtitle">fill out the following details and then design your customized postcard in the next step</P>
       <!-- <br> -->
       <div class="inside">
-        <P>Add personal note</P>
-      <input type="text" class="note" name="note" id="notex" placeholder="put your note here" maxlength="50">
+        <form>
+          <P>Add personal note</P>
+      <input required type="text" class="note" name="note" id="notex" placeholder="put your note here" maxlength="50">
       <br>
       <P>Add four images (use 1:1 ratio for best view)</P>
       <div class="images-upload">
-        <input type="file" name="img1" id="img1" accept="image/*">
-      <input type="file" name="img2" id="img2" accept="image/*">
-      <input type="file" name="img3" id="img3" accept="image/*">
-      <input type="file" name="img4" id="img4" accept="image/*">
+        <input required type="file" name="img1" id="img1" accept="image/*">
+      <input required type="file" name="img2" id="img2" accept="image/*">
+      <input required type="file" name="img3" id="img3" accept="image/*">
+      <input required type="file" name="img4" id="img4" accept="image/*">
       </div>
 
       <br>
       <P>Add a video</P>
-      <input type="file" name="vid" id="vid" accept="video/*">
+      <input required type="file" name="vid" id="vid" accept="video/*">
       <br><br>
-      <button id="nxt" class="next">next</button>
+      <button type="submit" id="nxt" class="next">next</button>
+        </form>
       
       </div>
     </div>
