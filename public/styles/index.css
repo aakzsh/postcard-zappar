@@ -118,7 +118,14 @@ button{
     height: 10rem;
     width: 15rem;
     background-color: yellow;
+    
    
+}
+
+.imgsite {
+    width: 100%; /* or any custom size */
+    height: 100%; 
+    object-fit: cover;
 }
 
 .footer{
