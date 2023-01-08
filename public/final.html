@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Create | Postcard Zappar</title>
+	<link rel="icon" type="image/x-icon" href="assets/envelope-open.png">
+    <meta name="description" content="AR Postcards powered by ZapWorks">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/873911460055642152/1061636989536968764/image.png">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
@@ -27,8 +31,7 @@
 <center><input type="text" name="add" id="inp" class="note" placeholder="add note"> <button onclick="document.getElementById('noteplace').innerHTML = document.getElementById('inp').value">Add</button>
 </center>
 <div class="post-par"><div id="posty" class="postcard">
-  <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO"  class="postcard-qr"  /> -->
-  <canvas id="qr-code"></canvas>  <!-- <img src="https://media.discordapp.net/attachments/873911460055642152/1060903835121483817/EAAAAASUVORK5CYII.png" class="postcard-qr" alt=""> -->
+  <canvas id="qr-code"></canvas> 
   <p class="coderoom" style="margin-top: -0.3rem; margin-bottom: -0.3rem;" id="coderoom">code</p>
   <p class="postcard-title">AR Postcard</p>
   <p class="postcard-subtitle">made especially for you</p>
@@ -6971,8 +6974,6 @@
 </svg>
   </div>
   
-  <!-- <img src="https://i.pinimg.com/originals/ae/bf/f8/aebff820fd4da79db61299c3ac69bd9a.png" class="mascot1" alt=""> -->
-  <!-- <img src="https://www.freepnglogos.com/uploads/mascot-logo-png/bear-head-mascot-red-bear-mascot-angry-15.png" class="mascot2" alt=""> -->
 </div></div>
 
 <center><button class="next" onclick="save()">download</button></center>
@@ -7001,14 +7002,7 @@ if(isTexture){
   console.log("hemlo")
   document.getElementById("posty").style.backgroundImage = 'url("./assets/'+clr+'.png")'
 }
-
-// document.getElementById
-
-
-// ("mascotchild").style.backgroundColor = x
 var qrtext = "https://8nqe6.zappar.io/2373053848413461853/1.0.1/scan.html?code="+code;
-                // document.getElementById("qr-result").innerHTML = "QR code for " + qrtext +":";
-                // alert(qrtext);
                 var qr;
 			(function() {
                     qr = new QRious({
@@ -7023,9 +7017,7 @@ var qrtext = "https://8nqe6.zappar.io/2373053848413461853/1.0.1/scan.html?code="
 
         html2canvas(
           document.querySelector("#posty")).then((canvas) => {
-            // allowTaint: true
-          
-          // document.body.appendChild(canvas)
+            
           var link = document.getElementById("link");
           link.setAttribute("download", "postcard.png");
           link.setAttribute(

@@ -9,7 +9,11 @@
     <!-- Custom components -->
 
     <meta charset="utf-8" />
-    <title>Zappar for A-Frame: Instant Tracked Video Example</title>
+    <title>Create | AR Postcard</title>
+    <link rel="icon" type="image/x-icon" href="assets/envelope-open.png">
+    <meta name="description" content="AR Postcards powered by ZapWorks">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/873911460055642152/1061636989536968764/image.png">
+
     <style>
       html,
       body {
@@ -349,8 +353,7 @@ color="black"
             >
             </a-circle>
 
-            <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
-          </a-entity>
+           </a-entity>
 
           <a-entity
           id="txtclr"
@@ -379,9 +382,7 @@ color="black"
             onclick="changeTextclr('white')"
           >
           </a-circle>
-
-          <!-- <a-plane id="pause" class="interactive" pause src="#pause-circle" position="0.3 0 0" scale="0.5 0.5 0.5" material="alpha-test:0.5"></a-plane> -->
-        </a-entity>
+         </a-entity>
         </a-entity>
       </a-entity>
     </a-scene>
@@ -447,15 +448,6 @@ color="black"
       placementUI.addEventListener("click", function () {
         document.getElementById("buttons").setAttribute("width", 0);
 
-        // Set placement mode to false
-        // instantGroup.setAttribute("zappar-instant", "placement-mode: false");
-
-        // // Hide the placement UI
-        // placementUI.classList.remove("visible");
-        // placementUI.classList.add("hidden");
-        // // Show the placement UI
-        // replacementUI.classList.remove("hidden");
-        // replacementUI.classList.add("visible");
       });
 
       // When the user taps on the replacement UI

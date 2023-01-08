@@ -11,106 +11,108 @@
       referrerpolicy="no-referrer"
     ></script>
     <link rel="stylesheet" href="styles/create.css" />
+    <link rel="icon" type="image/x-icon" href="assets/envelope-open.png" />
+    <meta name="description" content="AR Postcards powered by ZapWorks" />
+    <meta
+      property="og:image"
+      content="https://cdn.discordapp.com/attachments/873911460055642152/1061636989536968764/image.png"
+    />
   </head>
 
   <body>
-    <video width="320" height="240" controls autoplay muted id="videoId"  class="fullsc" loop="true">
-      <source src="./assets/postcardvid.mp4" type="video/mp4">
+    <video
+      width="320"
+      height="240"
+      controls
+      autoplay
+      muted
+      id="videoId"
+      class="fullsc"
+      loop="true"
+    >
+      <source src="./assets/postcardvid.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <!-- <video src="./assets/arvid.mp4" autoplay="true" loop="true"></video> -->
-    
-    <div class="content" style="display: block;">
+
+    <div class="content" style="display: block">
       <h1>CREATE AN AR POSTCARD</h1>
-      <P class="subtitle">fill out the following details and then design your customized postcard in the next step</P>
+      <p class="subtitle">
+        fill out the following details and then design your customized postcard
+        in the next step
+      </p>
       <!-- <br> -->
       <div class="inside">
         <form>
-          <P>Add personal note</P>
-      <input required type="text" class="note" name="note" id="notex" placeholder="put your note here" maxlength="50">
-      <br>
-      <P>Add four images (use 1:1 ratio for best view)</P>
-      <div class="images-upload">
-        <input required type="file" name="img1" id="img1" accept="image/*">
-      <input required type="file" name="img2" id="img2" accept="image/*">
-      <input required type="file" name="img3" id="img3" accept="image/*">
-      <input required type="file" name="img4" id="img4" accept="image/*">
-      </div>
+          <p>Add personal note</p>
+          <input
+            required
+            type="text"
+            class="note"
+            name="note"
+            id="notex"
+            placeholder="put your note here"
+            maxlength="50"
+          />
+          <br />
+          <p>Add four images (use 1:1 ratio for best view)</p>
+          <div class="images-upload">
+            <input
+              required
+              type="file"
+              name="img1"
+              id="img1"
+              accept="image/*"
+            />
+            <input
+              required
+              type="file"
+              name="img2"
+              id="img2"
+              accept="image/*"
+            />
+            <input
+              required
+              type="file"
+              name="img3"
+              id="img3"
+              accept="image/*"
+            />
+            <input
+              required
+              type="file"
+              name="img4"
+              id="img4"
+              accept="image/*"
+            />
+          </div>
 
-      <br>
-      <P>Add a video</P>
-      <input required type="file" name="vid" id="vid" accept="video/*">
-      <br><br>
-      <button type="submit" id="nxt" class="next">next</button>
+          <br />
+          <p>Add a video</p>
+          <input required type="file" name="vid" id="vid" accept="video/*" />
+          <br /><br />
+          <button type="submit" id="nxt" class="next">next</button>
         </form>
-      
       </div>
     </div>
 
-<div class="design" style="display: none;">
-  <h1>YOUR DESIGNED AR POSTCARD</h1>
-<P class="subtitle">to send to your loved ones</P>
+    <div class="design" style="display: none">
+      <h1>YOUR DESIGNED AR POSTCARD</h1>
+      <p class="subtitle">to send to your loved ones</p>
 
-<div class="post-par"><div id="posty" class="postcard">
-  <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO"  class="postcard-qr"  /> -->
-  <canvas id="qr-code"></canvas>  <!-- <img src="https://media.discordapp.net/attachments/873911460055642152/1060903835121483817/EAAAAASUVORK5CYII.png" class="postcard-qr" alt=""> -->
-  <p class="postcard-title">AR Postcard</p>
-  <p class="postcard-subtitle">made especially for you</p>
-  <p style="margin-top: -1rem; font-size: 1rem;">powered by ZapWorks</p>
-  <div class="mascot1"></div>
-  <div class="mascot2"></div>
-  <!-- <img src="https://i.pinimg.com/originals/ae/bf/f8/aebff820fd4da79db61299c3ac69bd9a.png" class="mascot1" alt=""> -->
-  <!-- <img src="https://www.freepnglogos.com/uploads/mascot-logo-png/bear-head-mascot-red-bear-mascot-angry-15.png" class="mascot2" alt=""> -->
-</div></div>
-
-<center><button class="next" onclick="save()">download</button></center>
-</div>
-
-    <!-- <h2 class="text-primary" style="margin-left: 15px; margin-bottom: 10px">
-      db check
-    </h2>
-
-    <div id="capture" style="padding: 10px; background: #f5da55">
-      <h4 style="color: #000">Hello world!</h4>
-    </div>
-
-    <form class="container" id="contactForm">
-      <div class="card">
-        <div class="card-body">
-          <div class="form-group">
-            <label for="exampleFormControlInput1"> Enter Your Name </label>
-
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              placeholder="Enter your name"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1"> Email address </label>
-
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="name@example.com"
-            />
-          </div>
+      <div class="post-par">
+        <div id="posty" class="postcard">
+          <canvas id="qr-code"></canvas>
+          <p class="postcard-title">AR Postcard</p>
+          <p class="postcard-subtitle">made especially for you</p>
+          <p style="margin-top: -1rem; font-size: 1rem">powered by ZapWorks</p>
+          <div class="mascot1"></div>
+          <div class="mascot2"></div>
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          style="margin-left: 15px; margin-top: 10px"
-        >
-          Submit
-        </button>
       </div>
-    </form>
-    <a id="link"></a>
 
-    <button onclick="save()">as image</button> -->
+      <center><button class="next" onclick="save()">download</button></center>
+    </div>
+
     <a id="link"></a>
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -119,59 +121,33 @@
     <script src="firebase-helper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
-
     <script>
+      var x = localStorage.getItem("hex");
+      var y = localStorage.getItem("textclr");
+      document.getElementById("posty").style.color = y;
 
+      var clr = localStorage.getItem("clr");
+      document.getElementById("posty").style.backgroundColor = x;
+      var isTexture = localStorage.getItem("isTexture");
 
-var x = localStorage.getItem("hex");
-var y = localStorage.getItem("textclr");
-document.getElementById("posty").style.color = y;
+      if (isTexture) {
+        console.log("hemlo");
+        document.getElementById("posty").style.backgroundImage =
+          'url("./assets/' + clr + '.png")';
+      }
 
-var clr = localStorage.getItem("clr");
-document.getElementById("posty").style.backgroundColor = x;
-var isTexture = localStorage.getItem("isTexture");
-
-if(isTexture){
-  console.log("hemlo")
-  document.getElementById("posty").style.backgroundImage = 'url("./assets/'+clr+'.png")'
-}
-
-// document.getElementById
-
-
-// ("mascotchild").style.backgroundColor = x
-var qrtext = "hehehheheh";
-                // document.getElementById("qr-result").innerHTML = "QR code for " + qrtext +":";
-                // alert(qrtext);
-                var qr;
-			(function() {
-                    qr = new QRious({
-                    element: document.getElementById('qr-code'),
-                    size: 150,
-                    value: 'xyz'
-                });
-            })();
-            
+      var qrtext = "hehehheheh";
+      var qr;
+      (function () {
+        qr = new QRious({
+          element: document.getElementById("qr-code"),
+          size: 150,
+          value: "xyz",
+        });
+      })();
 
       function save() {
-
-        // html2canvas(document.querySelector("#posty"), {  allowTaint: true, onrendered     : function (canvas) {      
-        //   var link = document.getElementById("link");
-        //   link.setAttribute("download", "postcard.png");
-        //   link.setAttribute(
-        //     "href",
-        //     canvas
-        //       .toDataURL("image/png")
-        //       .replace("image/png", "image/octet-stream")
-        //   );
-        //   link.click();
-        //            } });
-
-        html2canvas(
-          document.querySelector("#posty")).then((canvas) => {
-            // allowTaint: true
-          
-          // document.body.appendChild(canvas)
+        html2canvas(document.querySelector("#posty")).then((canvas) => {
           var link = document.getElementById("link");
           link.setAttribute("download", "postcard.png");
           link.setAttribute(
@@ -183,10 +159,7 @@ var qrtext = "hehehheheh";
           link.click();
         });
       }
-
-
     </script>
-        <script type="module" src="firebase-create-functions.js"></script>
-
+    <script type="module" src="firebase-create-functions.js"></script>
   </body>
 </html>

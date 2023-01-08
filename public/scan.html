@@ -12,6 +12,10 @@
 
     <meta charset="utf-8" />
     <title>Scan | AR Postcard</title>
+    <link rel="icon" type="image/x-icon" href="assets/envelope-open.png">
+    <meta name="description" content="AR Postcards powered by ZapWorks">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/873911460055642152/1061636989536968764/image.png">
+
     <style>
       html,
       body {
@@ -249,57 +253,6 @@
 
       </a-scene>
     </div>
-    <!-- Some UI for the user to tap to indicate they're happy with the placement -->
-    <!-- <div id="zappar-placement-ui" class="btn visible">Tap here to place the object</div> -->
-
-    <!-- Some UI for the user to tap to indicate they want to manipulate the placement -->
-    <!-- <div id="zappar-replacement-ui" class="btn hidden"><i data-feather="move"></i></div>W -->
-
-    <!-- <script>
-        // Assign a variable to the video
-        const bigBuckBunnyVideo = document.getElementById('bigBuckBunnyVideo');
-
-        // Reset the video when it ends
-        bigBuckBunnyVideo.onended = () => {
-            bigBuckBunnyVideo.currentTime = 0;
-        };
-
-        // Assign variables to the UI elements
-        const placementUI = document.getElementById("zappar-placement-ui");
-        const replacementUI = document.getElementById("zappar-replacement-ui");
-
-        // Assign a variable to the instant tracker group
-        const instantGroup = document.getElementById("instant-tracker");
-
-        // When the user taps on the placement UI
-        const placementUI = document.getElementById("zappar-placement-ui");r("click", function() {
-            // Set placement mode to false
-            instantGroup.setAttribute("zappar-instant", "placement-mode: false");
-
-            // Hide the placement UI
-            placementUI.classList.remove("visible");
-            placementUI.classList.add("hidden");
-            // Show the placement UI
-            replacementUI.classList.remove("hidden");
-            replacementUI.classList.add("visible");
-        });
-
-        // When the user taps on the replacement UI
-        replacementUI.addEventListener("click", function() {
-            // Set placement mode to true
-            instantGroup.setAttribute("zappar-instant", "placement-mode: true");
-
-            // Hide the replacement UI
-            replacementUI.classList.remove("visible");
-            replacementUI.classList.add("hidden");
-            // Show the placement UI
-            placementUI.classList.remove("hidden");
-            placementUI.classList.add("visible");
-        });
-
-        // Update our feather icons
-        feather.replace();
-    </script> -->
     <script type="module" src="firebase-functions.js"></script>
     <script>
         const openE = document.getElementById("openEnvelope")
