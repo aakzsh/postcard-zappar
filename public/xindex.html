@@ -141,6 +141,7 @@
             crossorigin="anonymous"
             muted
           ></video>
+          <img id="paper" src="assets/paper.png" />
           <img id="play-circle" src="assets/play-circle.png" />
           <img id="pause-circle" src="assets/pause-circle.png" />
           <img id="open" src="assets/envelope-open.png">
@@ -224,7 +225,7 @@
                   onclick="openNote()"
                 ></a-plane>
 
-            <a-plane class="interactive" id="notecard" height="2" width="2.5" color="pink" position="-2 1 -1" visible="false" onclick="closeNote()">
+            <a-plane class="interactive" src="#paper" id="notecard" height="2" width="2.5" color="white" position="-2 1 -1" visible="false" onclick="closeNote()">
 
             </a-plane>   
             <a-text
