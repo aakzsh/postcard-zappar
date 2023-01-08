@@ -181,3 +181,22 @@ align-items: center;
 }
 
 video::-webkit-media-controls-panel { display: none ! important; opacity: 1 ! important;}
+
+.mascotimg{  position: relative;
+
+top: -18rem;
+left: 20rem;
+background-color: #039BE5;
+border: 10px solid #90CAF9;
+    /* top: -5rem; */
+    /* background: repeating-linear-gradient(
+        45deg,
+        #039BE5 0px,
+        #039BE5 20px,
+        #90CAF9 20px,
+        #90CAF9 40px
+      ); */
+
+      height: 5rem;
+      width: 10rem;
+}

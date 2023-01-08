@@ -26,7 +26,7 @@ function x() {
         top.src = value['image-urls'][1]
         left.src = value['image-urls'][2]
         right.src = value['image-urls'][3]
-        note.setAttribute('value', 'Lorem Ipsum is simply dummy text of the printing.')
+        note.setAttribute('value', value['note'])
 
     });
 }
