@@ -1,4 +1,4 @@
-![image](https://github.com/aakzsh/postcard-zappar/assets/69726390/3fdba255-2fd6-4c8a-8092-f272db441d70)### live at
+### live at
 https://8nqe6.zappar.io/2373053848413461853/1.0.5
 
 ## AR Postcard
