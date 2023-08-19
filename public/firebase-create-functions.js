@@ -38,6 +38,8 @@ if(img1 && img2 && img3 && img4 && vid && notex != ''){
             alert("File size too large!! Combined images size shouldn't exceed 3 MBs and video size shouldn't exceed 5 MBs");
         }
         else{
+            document.getElementById("upload-content").style.display = "none";
+            document.getElementById("loading-bar").style.display = "block";
             uploadImg(document.getElementById('img1').files[0], code+'1.jpg').then(()=> {
                 uploadImg(document.getElementById('img2').files[0], code+'2.jpg').then(()=> {
                     uploadImg(document.getElementById('img3').files[0], code+'3.jpg').then(()=> {

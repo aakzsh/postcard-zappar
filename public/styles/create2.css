@@ -23,6 +23,7 @@ body {
     cursor: default;
 
     overflow: hidden;
+    
 }
 .btn, .btn:visited {
     position: absolute;

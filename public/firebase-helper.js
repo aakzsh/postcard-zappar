@@ -1,4 +1,4 @@
-import firebaseConfig from '../variables.js'
+import firebaseConfig from './variables.js'
 // import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);

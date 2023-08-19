@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+html,
+body {
+  margin: 0;
+  background-color: #121212;
+  color: white;
+  font-family: "Raleway";
+  overflow-x: hidden;
+}
+
+.intro {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("assets/intro-img.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.down-arrow {
+  height: 3rem;
+  width: 3rem;
+  background-image: url("assets/down-arrow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.header {
+  width: calc(100vw - 2rem);
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  float: left;
+  font-size: 1.3rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.title-text {
+  text-align: center;
+  background-image: url("assets/title-text-bg-2.png");
+  background-size: contain;
+  background-clip: content-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.intro-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.powered-text {
+  text-align: center;
+}
+
+.powered-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-imgs {
+  height: 2rem;
+}
+
+.what-we-do {
+  /* height: 100vh; */
+  height: max-content;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  padding: 2rem;
+}
+
+.examples {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  padding-left: 4rem;
+}
+
+.footer {
+  min-height: 15rem;
+  width: 100vw;
+  max-width: 100%;
+  background-image: url("assets/footer-img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.footer-left {
+  width: 30rem;
+  /* background-color: orangered; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-right {
+  width: 30rem;
+  /* background-color: orangered; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.footer-disclaimer {
+  font-size: 2rem;
+  margin-top: -1rem;
+}
+
+hr {
+  max-width: 90vw;
+}
+
+.what-we-do-right {
+  width: 40vw;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.what-we-do-left {
+  padding: 2rem;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+}
+
+.what-we-do-content {
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.create-your-card {
+  margin-top: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #4e8495;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.postcards {
+  width: 30rem;
+}
+
+.examples-text {
+  float: left;
+}
+
+.example-card-img {
+  height: 20rem;
+}
+
+.download-icon {
+  height: 3rem;
+}
+
+.scan-btn {
+  border: none;
+  background-color: #4e8495;
+  border-radius: 0.4rem;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.1rem;
+}
+
+.example-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: max-content;
+}
+
+.example-card-options {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.examples-div {
+  margin-top: 10rem;
+  display: flex;
+  gap: 10rem;
+  /* justify-content: ; */
+}
+
+button {
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width: 600px) {
+.title-text{
+  font-size: 2rem;
+}
+.what-we-do{
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  min-height: 15rem;
+  width: 100vw;
+  max-width: 100%;
+  background-image: url("assets/footer-img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.what-we-do-left {
+  /* padding: 1rem; */
+  width: 80vw;
+}
+.what-we-do {
+  /* height: 100vh; */
+  height: max-content;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  padding: 0;
+}
+
+.what-we-do-right {
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.postcards {
+  width: 15rem;
+}
+
+.examples {
+  height: max-content;
+  width: 100vw;
+  max-width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-card-img {
+  height: 10rem;
+}
+
+.examples-div {
+  margin-left: -4rem;
+  margin-top: 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  /* justify-content: ; */
+}
+
+}

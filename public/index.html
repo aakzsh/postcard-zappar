@@ -1,108 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/index.css">
-  <title>Home | AR Postcard</title>
-  <link rel="icon" type="image/x-icon" href="assets/envelope-open.png">
-  <meta name="description" content="AR Postcards powered by ZapWorks">
-  <meta property="og:image" content="https://cdn.discordapp.com/attachments/873911460055642152/1061636989536968764/image.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/logo.ico" type="image/x-icon">
+    <title>AR Postcard | Send virtual postcards to your loved ones</title>
+    <link rel="stylesheet" href="index.css">
+    <meta property='og:title'  content='AR Postcard'>
+    <meta name="description" content="Powered by ZapWorks and Firebase, AR Postcard unleashes the power to send amazing postcard letters to your friends vitually!">
+    <meta property="og:image" content="https://media.discordapp.net/attachments/873911460055642152/1142453716071481384/image.png">
 
 </head>
 <body>
-
-  <video width="320" height="240" controls autoplay muted id="videoId"  class="fullsc" loop="true">
-    <source src="./assets/arvid2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="first">
-    <div>
-      <h2 class="title-h">
-        Send AR postcards to your loved ones
-      </h2>
-      <div class="powered">
-        <p>
-          powered by
-        </p>
-        <img src="./assets/zaplogo.png" alt="" srcset="" class="logo">
-      </div>
-     
+    <div class="intro">
+        <div class="header">
+            <a href="create.html">demo</a>
+            <p>•</p>
+            <a href="create.html">create</a>
+            <p>•</p>
+            <a href="scan.html">scan</a>
+        </div>
+        <div class="intro-content">
+            <p class="title-text">send ar postcards to<br>people you love <3</p>
+            <div class="powered-div">
+                <p class="powered-text">powered by</p>
+                <a href="https://zap.works" target="_blank"><img src="assets/zapworks.png"class="logo-imgs" alt=""></a>
+                <p>&</p>
+                <a href="https://firebase.com" target="_blank"><img src="assets/firebase.png"class="logo-imgs" alt=""></a>
+            </div>
+        </div>
+        <div class="down-arrow" onclick="window.location.href='#what-we-do'">
+        </div>
     </div>
-    <div>
-      <img src="./assets/postcard.webp" alt="" srcset="" class="postimg">
+    <div class="what-we-do" id="what-we-do">
+        <div class="what-we-do-left">
+            <p class="title-text">what do we do?</p>
+            <p class="what-we-do-content">AR postcard serves as a platform of its own, a social media platform where users can send and scan postcards from their dearest friends. A user can create a personalized postcard, where they can upload the assets (4 images, 1 video and a small cute note) as the main content, and then they get to design and customize it using AR. They can choose the color, texture, font color of their card, and put on a small message to be displayed over the card, just like normal conventional cards. After this setup it done, the users can get their cards by downloading them, which they can personally print or just send to whosoever they want. Also, once can't really send videos over postcard right? We've made that possible as well! Your receiver can scan the card and get to see your beautiful efforts <3</p>
+            <button class="create-your-card" onclick="window.location.href='create.html'">create your card</button>
+        </div>
+        <div class="what-we-do-right">
+            <img src="assets/postcards.png" class="postcards" alt="" srcset="">
+        </div>
+        
     </div>
-  </div>
+    <hr>
+    <div class="examples">
+        <p class="title-text examples-text">example cards to scan</p>
+        
+        <br>
+        <div class="examples-div">
+            <div class="example-card">
+                <img src="assets/example1.png" class="example-card-img" alt="">
+                <div class="example-card-options">
+                    <button class="scan-btn" onclick="window.location.href='scan.html?code=demoid'">scan >></button>
+                    <a href="assets/example1.png" target="_blank" download><img src="assets/download-icon.png" class="download-icon" alt=""></a>
+                </div>
+            </div>
+            <div class="example-card">
+                <img src="assets/example2.png" class="example-card-img" alt="">
+                <div class="example-card-options">
+                    <button class="scan-btn" onclick="window.location.href='scan.html?code=a85zz'">scan >></button>
+                    <a href="assets/example2.png" target="_blank" download><img src="assets/download-icon.png" class="download-icon" alt=""></a>
+                    
+                </div>
+            </div>
+        </div>
 
-  <hr>
-
-  <div class="second">
-
-
-    <h2>Create Now!</h2>
-    <p>A step by step procedure, immersed in Augmented Reality to the fullest</p>
-
-
-    <div class="second-cont">
-      <div class="vid-par">  
-        <img class="imgsite" src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/overview.gif" alt="" srcset="">
-
-      </div>
-
-      <div>
-        <button  onclick="window.location.href='create.html'">Create Your Own</button>
-      </div>
     </div>
-  </div>
-<br><br>
-  <hr>
-  <div class="third">
-
-
-    <h2>Example cards to scan</h2>
-
-    <div class="scan">
-      <div>
-        <img src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/postcard1.png" alt="" srcset="" class="excard">
-<button onclick="window.location.href='scan.html?code=demoid'">Scan This Card</button>
-      </div>
-      <div>
-        <img src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/postcard2.png" alt="" srcset="" class="excard">
-<button onclick="window.location.href='scan.html?code=a85zz'">Scan This Card</button>
-      </div>
+    <div class="footer">
+        <div class="footer-left">
+            <div class="all-rights-reserved">
+                <p class="footer-title">AR Postcard</p>
+                <p class="footer-disclaimer">all rights reserved.</p>
+            </div>
+            <div class="built-with-love">
+                <p>built with love and dedication • @2023</p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="quick-links-heading">
+                <p class="footer-title">quick links</p>
+            </div>
+            <div class="links">
+                <a href="">tutorials</a>
+                <a href="https://zap.works">learn more about zapworks</a>
+                <a href="https://github.com/shrutixyz">learn more about ar postcard dev team</a>
+                <a href="https://www.youtube.com/watch?v=XPNUmcEOYW0">what exactly is augmented reality (AR)?</a>
+            </div>
+        </div>
     </div>
-
-
-  </div>
-  <br><br><br><br>
-<hr>
-  <div class="four">
-<h2>Some Clips</h2>
-
-<div class="clip-par">
-  <div class="clips">
-<img class="imgsite" src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/clip1.gif" alt="" srcset="">
-  </div>
-  <div class="clips">
-    <img class="imgsite" src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/clip2.gif" alt="" srcset="">
-
-  </div>
-  <div class="clips">
-    <img class="imgsite" src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/clip3.gif" alt="" srcset="">
-
-  </div>
-  <div class="clips">
-    <img class="imgsite" src="https://storage.googleapis.com/postcard-zappar.appspot.com/site/clip4.gif" alt="" srcset="">
-
-  </div>
-</div>
-  </div>
-  
-<hr>
-
-<div class="footer"><p>checkout at </p> <a href="http://devpost.com/software/ar-postcard"><img height="20rem" src="https://q9k6x7m8.stackpathcdn.com/assets/reimagine2/devpost-logo-646bdf6ac6663230947a952f8d354cad.svg" alt=""></a>
-</div>
-
 </body>
 </html>
